@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.Stack;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
@@ -17,10 +21,120 @@ public class Main {
 		//arraySample();
 		//stringSample();
 		arrayListSample();
+		//hashMapSample();
+		//stackSample();
+		//setSample();
 
 		
 	}
 	
+	private static void stackSample() {
+		// TODO Auto-generated method stub
+		// 1 2 3 4  ==>  4 3 2 1     FILO: stack,   FIFO: queue
+		
+		Stack<Integer> stack = new Stack<>();
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		System.out.println(stack);
+		
+		int a = stack.peek();
+		System.out.println(a+","+stack);
+		
+		a=stack.pop();
+		System.out.println(a+","+stack);
+		
+		a=stack.pop();
+		System.out.println(a+","+stack);
+		
+		a=stack.pop();
+		System.out.println(a+","+stack);
+
+	}
+
+	private static void setSample() {
+		// TODO Auto-generated method stub
+		HashSet<Integer> set1 = new HashSet<>();
+		set1.add(1);
+		set1.add(2);
+		set1.add(3);
+		set1.add(4);
+		
+		HashSet<Integer> set2 = new HashSet<>();
+		set2.add(3);
+		set2.add(4);
+		set2.add(5);
+		set2.add(6);
+		
+		System.out.println(set1);
+		System.out.println(set2);
+		
+		set1.addAll(set2); // union of sets
+		System.out.println(set1);
+		set1.remove(5);
+		set1.remove(6);
+		
+		set1.removeAll(set2);
+		System.out.println(set1);
+		
+		set1.add(3);
+		set1.add(4);
+		
+		set1.retainAll(set2);  // join of sets
+		System.out.println(set1);
+		
+		for (int ele:set2) {
+			System.out.print(ele+" ");
+		}
+		System.out.println();
+		
+		System.out.println(set1.contains(1));
+		System.out.println(set1.contains(3));
+		
+		set2.add(3);
+		System.out.println(set2);
+		
+	}
+
+	private static void hashMapSample() {
+		// TODO Auto-generated method stub
+		HashMap hashmap = new HashMap();
+		hashmap.put(1, "Hi");
+		hashmap.put("A", 1000);
+		hashmap.put("A", 32);
+		System.out.println(hashmap);
+		System.out.println(hashmap.get(1));
+		System.out.println(hashmap.get("A"));
+		System.out.println("===============");
+		
+		for (Object key:hashmap.keySet()) {
+			System.out.println(key+"->"+hashmap.get(key));
+		}
+		
+		hashmap.remove("A");
+		System.out.println(hashmap);
+		
+		HashMap<String, Student> students = new HashMap<>();
+		
+		Student peter = new Student("Peter", "Male", 16);
+		Student helen = new Student("Helen", "Female", 20);
+		Student david = new Student("David", "Male", 8);
+		Student alice = new Student("Alice", "Female", 10);
+		
+		students.put(peter.name, peter);
+		students.put(helen.name, helen);
+		students.put(david.name, david);
+		students.put(alice.name, alice);
+		
+		System.out.println(students);
+		Student aStudent = students.get("Alice");
+		System.out.println(aStudent.name+","+aStudent.gender+","+aStudent.age);
+		
+		System.out.println(students.containsKey("Helen"));
+		
+		
+	}
+
 	private static void arrayListSample() {
 		// TODO Auto-generated method stub
 		ArrayList<Object> oAl = new ArrayList<>();
@@ -78,6 +192,25 @@ public class Main {
 		System.out.println(dAl2);
 		dAl.addAll(dAl2);
 		System.out.println(dAl);
+		
+		int idx = dAl.indexOf(4.5);
+		System.out.println(idx);
+		idx = dAl.indexOf(7.7);
+		System.out.println(idx);
+		idx = dAl.lastIndexOf(4.5);
+		System.out.println(idx);
+		System.out.println(dAl.contains(4.5));
+		System.out.println(dAl.contains(7.7));
+		
+		System.out.println("==================");
+		System.out.println(dAl);
+		
+		Collections.sort(dAl);
+		System.out.println(dAl);
+		
+		Collections.sort(dAl, Collections.reverseOrder());
+		System.out.println(dAl);
+		
 		
 		
 	}
@@ -304,4 +437,19 @@ public class Main {
 		
 	}
 
+}
+
+
+class Student {
+	String name;
+	String gender;
+	int	age;
+	
+	public Student(String name, String gender, int age) {
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+	}
+	
+	
 }
